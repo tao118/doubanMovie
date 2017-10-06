@@ -1,0 +1,32 @@
+<template>
+  <div class="movie-comment">
+    <p class="movie-comment-title">{{title}}的短评：</p>
+    <p>没有豆瓣数据权限</p>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    title: {
+      type: String
+    }
+  },
+  data () {
+    return {
+    }
+  },
+  mounted () {
+    this.$store.dispatch('getMovieList')
+  },
+  computed: {
+    movieCommet () {
+      return this.$store.getters.movieComment
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

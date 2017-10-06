@@ -1,23 +1,35 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <header></header>   
+    <!-- header -->
+    <transition name="fade">        
+    <!-- 渐变 -->
+      <keep-alive exclude="MoviesDetail">
+      <!-- keep some components alive. -->
+        <router-view></router-view>
+      </keep-alive>   
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  data () {
+    return {
+    }
+  },
+  components: {
+    'header': (resolve) => {
+      require(['./header'], resolve)  // 异步调用
+    }
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less" rel="stylesheet/less">
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: '微软雅黑';
+  }
 </style>

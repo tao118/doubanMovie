@@ -1,0 +1,28 @@
+import Vue from 'vue'
+import {
+  Button,
+  Select,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Input,
+  Loading,
+  Rate
+} from 'element-ui'
+let variable = {
+  Button,
+  Select,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Input,
+  Loading,
+  Rate
+}
+for (let item in variable) {
+  if (variable.hasOwnProperty(item)) {
+    vue.use(variable[item])
+  }
+}
+
+export default Vue
