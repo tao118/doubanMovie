@@ -1,7 +1,7 @@
 <template>
   <div class="moivesList" v-loading="loadingMoviesOnline">
     <div class="movie-container">
-      <div class="movieTag" v-for="(subject,index) in data.subjects" :key="index" v-if="index < maxNum">
+      <div class="movieTag" v-for="(subject,index) in data.subjects" v-if="index < maxNum">
         <ul>
           <li class="film-pic">
             <a @click="showDetail(subject.id)">
@@ -36,7 +36,7 @@ export default {
     return {
       value: 0,
       subject: {},
-      maxNum: 12
+      maxNum: 3
     }
   },
   watch: {
@@ -93,6 +93,7 @@ export default {
           height: 180px;
           margin-bottom: 12px;
           overflow: hidden;
+          float: left;
           a{
             img{
               width: 128px;
@@ -154,7 +155,7 @@ export default {
         line-height: 30px;
         text-align: center;
         background: #eee;
-        color: @doubanColor;
+        color: red;
       }
     }
   }

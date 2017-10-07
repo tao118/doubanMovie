@@ -23,16 +23,17 @@
 </template>
 
 <script>
+import MoviesTag from '@/components/MoviesTag.vue'
 export default {
   data () {
     return {
+      city: '深圳',
       citys: [
         {
           name: '北京'
         },
         {
           name: '上海'
-
         },
         {
           name: '广州'
@@ -54,19 +55,16 @@ export default {
   },
   methods: {
     /**
-     * @param command
-     */
+    * function 切换城市
+    * @param command
+    */
     changeCity (command) {
-      this.$store.cimit('MOVIEONLINE_LOADING', {loading: true})
-      this.$store.commit('MOVIEONLINE_CITY', {city: command})
-      this.$store.dispatch('getMOVIESONLINE')
+      this.$store.commit('MOVIESONLINE_LOADING', {loading: true})
+      this.$store.commit('MOVIE_CITY', {city: command})
+      this.$store.dispatch('getMoviesOnline')
     }
   },
-  components: {
-    'MoviesTag': (resolve) => {
-      require(['./MoviesTag.vue'], resolve)
-    }
-  },
+  components: { MoviesTag },
   computed: {
     /**
     * 电影列表函数
@@ -74,9 +72,6 @@ export default {
     */
     moviesOnlineList () {
       return this.$store.getters.moviesOnlineList
-    },
-    city () {
-      return this.$store.getters.city
     }
   }
 }
@@ -85,11 +80,23 @@ export default {
 <style rel="stylesheet/less" lang="less">
   .MoviesOnline {
     margin-bottom: 20px;
-    .hd {
+    .tit {
       width: 950px;
       margin: 0 auto;
       margin-top: 20px;
-      border: none;
-    } 
+      h1 {
+        display: inline-block;
+        width: 126px;
+        font-size: 20px;
+        color: #000;
+      }
+      .locat {
+        position: relative;
+        display: inline-block;
+      }
+      .hd {
+        border: none;
+      } 
+    }
   }
 </style>

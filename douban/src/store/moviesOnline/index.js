@@ -21,7 +21,7 @@ const state = {
     start: 0
   },
   loadingDetail: true,  // 电影详情页是否显示loading
-  city: '深圳',
+  city: '北京',
   ranking250: {},  // top250列表
   movieDetail: {
     rating: {},

@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import {Utils} from '../common/util'
-let util = new Utils()
+import {API} from '../common/api'
+let Api = new API()
 export default {
   props: {
     data: Object
@@ -37,7 +37,7 @@ export default {
     this.$store.dispatch('loadingtop250')
     window.onscroll = () => {
       if (!this.isLoad) {
-        if (util.getScrollTop() + util.getClientHeight() + 400 > util.getScrollHeight()) {
+        if (Api.getScrollTop() + Api.getClientHeight() + 400 > Api.getScrollHeight()) {
           let page = this.page + 1
           if (this.page <= this.totalPage) {
             this.isLoad = true

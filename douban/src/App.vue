@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header></header>   
+    <Doubanheader></Doubanheader>   
     <!-- header -->
     <transition name="fade">        
     <!-- 渐变 -->
@@ -19,7 +19,7 @@ export default {
     }
   },
   components: {
-    'header': (resolve) => {
+    'Doubanheader': (resolve) => {
       require(['./header'], resolve)  // 异步调用
     }
   }

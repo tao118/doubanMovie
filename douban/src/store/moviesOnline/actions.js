@@ -1,13 +1,13 @@
-import {Utils} from '../../../src/common/util'
+import {API} from '../../../src/common/api'
 
-let utils = new Utils()
+let Api = new API()
 export const actions = {
   /**
   * 获取电影列表
   * @param commit
   */
   getMoviesOnline ({commit, state}) {
-    utils.get('/movie/in_theaters', {city: state.city}).then(res => {
+    Api.get('/movie/in_theaters', {city: state.city}).then(res => {
       commit('MOVIESONLINE_LIST', {list: res})
       commit('MOVIESONLINE_LOADING', {loading: false})
     })
@@ -17,7 +17,7 @@ export const actions = {
   * @param commit
   */
   getMovieDetail ({commit, state}) {
-    utils.get(`/movie/subject/${state.id}`, {}).then(res => {
+    Api.get(`/movie/subject/${state.id}`, {}).then(res => {
       commit('DETAIL_LOADING', {loading: false})
       commit('MOVIE_DETAIL', {movieDetail: res})
     })
@@ -28,7 +28,7 @@ export const actions = {
   * @param state
   */
   getUpcoming ({commit, state}) {
-    utils.get('/movie/coming_soon', {city: state.city, start: state.upcomBody.start + 1}).then(res => {
+    Api.get('/movie/coming_soon', {city: state.city, start: state.upcomBody.start + 1}).then(res => {
       if (state.upcomBody.subjects && state.upcomBody.subjects.length) {
         res.subjects = state.upcomBody.subjects.concat(res.subjects)
         commit('PAGE_LOAD', {pageload: false})
@@ -43,7 +43,7 @@ export const actions = {
   * @param state
   */
   loadingtop250 ({commit, state}) {
-    utils.get('/movie/top250', {start: state.start, count: 10}).then(res => {
+    Api.get('/movie/top250', {start: state.start, count: 10}).then(res => {
       let subject = state.ranking250.subjects
       if (subject !== undefined) {
         res.subject = subject.concat(res.subjects)
@@ -59,7 +59,7 @@ export const actions = {
   */
   getSearchList ({commit, state}) {
     console.log(state.searchText)
-    utils.get('/movie/search', {q: state.searchText}).then(res => {
+    Api.get('/movie/search', {q: state.searchText}).then(res => {
       commit('SEARCH_LIST', {searchList: res})
       commit('SEARCH_LOADING', {loading: false})
     })
@@ -70,7 +70,7 @@ export const actions = {
   * @param state
   */
   getMovieList ({commit, state}) {
-    utils.get(`/movie/subject/${state.id}/comments`, {}).then(res => {
+    Api.get(`/movie/subject/${state.id}/comments`, {}).then(res => {
       commit('MOVIE_COMMENT', {comment: res})
     })
   }

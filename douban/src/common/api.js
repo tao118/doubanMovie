@@ -11,7 +11,7 @@ let vm = new Vue()
 const configPath = '/api'
 window.configPath = configPath
 
-export class Utils {
+export class API {
   get (url, data = {}) {
     url = configPath + url
     return new Promise((resolve, reject) => {
