@@ -11,7 +11,7 @@
       </div>
       <div class="douban-search">
         <el-input placeholder="电影、影人、影院、电视剧" v-model="content">
-          <el-button slot="apend" icon="search" @click="searchMovie"></el-button>
+          <el-button slot="append" icon="search" @click="searchMovie"></el-button>
         </el-input>
       </div>
     </div>
@@ -31,7 +31,7 @@ export default {
         title: '即将上映',
         url: '/upcoming'
       }, {
-        title: 'Top250',
+        title: ' Top--250 ',
         url: '/top250'
       }]
     }
@@ -53,49 +53,57 @@ export default {
 <style lang="less" rel="stylesheet/less">
 @import "../style/color";
   .header{
-    background: @mainColor;
+    background: white;
     width: 100%;
-    height: 114px;
+    height: 76px;
+    border: grey solid thin;
     .header-container{
-      a{
-        display: inline-block;
-        padding: 8px;
-        font-size: 12px;
-        color: #aaa;
-        text-decoration: none;
-      }
-      a.active{
-        color: red;
-      }
-      .title{
-          color: @doubanColor;
-          font-size: 30px;
-          font-weight: bold;
-          line-height: 75px;
-      }
-      .bar{
-        width: 950px;
-        margin: 0 auto;
-        height: 20px;
-        ul{
-          li{
-            list-style: none;
-            float: left;
-            line-height: 20px;
-            cursor: pointer;
-        }
-      }
+      width: 50%;
+      margin: auto;
       .douban-search{
         display: inline-block;
         line-height: 75px;
         vertical-align: top;
-        width: 500px;
-        margin-left: 50px;
+        width: 300px;
+        margin-left: 0px;
         input{
           height: 34px;
         }
       }
+      .title{
+          color: @doubanColor;
+          margin-top: 6px;
+          font-size: 36px;
+          font-weight: bold;
+          line-height: 75px;
+          float: left;
+      }
+      .bar{
+        width: 384px;
+        margin-left: 50px;
+        height: 75px;
+        float: left;
+        ul{
+          li{
+            list-style: none;
+            float: left;
+            line-height: 70px;
+            margin-left: 8px;
+            cursor: pointer;
+          }
+          a{
+            display: inline-block;
+            padding: 2px;
+            font-size: 18px;
+            color: #666;
+            text-decoration: none;
+          }
+          a.active{
+            background-color: red;
+            color:white;
+          }
+        }
+      }
     }
   }
-}
 </style>

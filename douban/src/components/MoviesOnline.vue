@@ -81,7 +81,7 @@ export default {
   .MoviesOnline {
     margin-bottom: 20px;
     .tit {
-      width: 950px;
+      width: 50%;
       margin: 0 auto;
       margin-top: 20px;
       h1 {
@@ -96,6 +96,12 @@ export default {
       }
       .hd {
         border: none;
+        margin-top:8px;
+        .on {
+          font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          color:red;
+          font-size:30px;
+        }
       } 
     }
   }

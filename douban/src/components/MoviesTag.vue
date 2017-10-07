@@ -36,7 +36,7 @@ export default {
     return {
       value: 0,
       subject: {},
-      maxNum: 3
+      maxNum: 12
     }
   },
   watch: {
@@ -155,7 +155,7 @@ export default {
         line-height: 30px;
         text-align: center;
         background: #eee;
-        color: red;
+        color: @doubanColor;
       }
     }
   }
