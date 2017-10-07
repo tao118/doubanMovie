@@ -64,7 +64,7 @@ export default {
         display: inline-block;
         line-height: 75px;
         vertical-align: top;
-        width: 300px;
+        width: 240px;
         margin-left: 0px;
         input{
           height: 34px;
