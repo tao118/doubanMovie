@@ -47,7 +47,7 @@ export default {
   methods: {
     showDetail (id) {
       this.$store.commit('DETAIL_LOADING', {loading: true})
-      this.$store.router.push({path: '/MovieDetail', query: {id: id}})
+      this.$store.router.push({path: '/movieDetail', query: {id: id}})
     }
   },
   computed: {
@@ -62,12 +62,12 @@ export default {
   @import '../../style/color';
   @import '../../style/base';
   .moviesList{
-    width: 950px;
+    width: 1200px;
     margin: 10px auto 0;
     min-height: 500px;
     .movie-container{
-      width: 560px;
-      border-top: 1px dashed #ccc;
+      width: 1200px;
+      // border-top: 1px dashed #ccc;
       margin-top: -10px;
       .movieTag{
         padding-top: 20px;
@@ -141,7 +141,7 @@ export default {
             background-color:#268dcd;
             border-radius: 2px;
             a{
-              color: #fff;
+              color: red;
             }
           }
 

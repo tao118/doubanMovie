@@ -14,7 +14,7 @@
       </div>
       <div class="hd">
         <ul class="tab-hd clearfix">
-          <li class="on">正在上映</li>
+          <li class="on">正在上映(售票中)</li>
         </ul>
       </div>
       <MoviesTag :data="moviesOnlineList" class="moviesTag"></MoviesTag>
@@ -81,18 +81,21 @@ export default {
   .MoviesOnline {
     margin-bottom: 20px;
     .tit {
-      width: 50%;
+      width: 1200px;
       margin: 0 auto;
       margin-top: 20px;
       h1 {
         display: inline-block;
         width: 126px;
         font-size: 20px;
-        color: #000;
+        color: #808080;
       }
       .locat {
         position: relative;
         display: inline-block;
+        .el-dropdown-link {
+          color: #808080;
+        }
       }
       .hd {
         border: none;

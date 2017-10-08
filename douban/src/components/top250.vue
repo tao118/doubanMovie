@@ -1,10 +1,6 @@
 <template>
   <div id="wrapper" v-loading="loadingMoviesOnline">
-    <div class="hd">
-      <ul class="tab-hd clearfix">
-        <li class="on">Top250排行榜</li>
-      </ul>
-    </div>
+    <h2>Top250排行榜</h2>
     <div class="indent">
     <!-- 缩进 -->
       <div class="">
@@ -69,5 +65,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" rel="stylesheet/less">
+
 </style>

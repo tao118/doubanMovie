@@ -37,6 +37,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less" rel="stylesheet/less">
+.search-list{
+  width: 950px;
+  min-height: 500px;
+  margin: 30px auto;
+}
 </style>

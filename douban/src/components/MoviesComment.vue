@@ -27,6 +27,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less" rel="stylesheet/less">
+.movie-comment{
+    float: left;
+    clear: both;
+    margin-top: 20px;
+    .movie-comment-title{
+      color: #007722;
+      font-size: 16px;
+    }
+  }
 </style>

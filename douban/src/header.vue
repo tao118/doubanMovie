@@ -31,7 +31,7 @@ export default {
         title: '即将上映',
         url: '/upcoming'
       }, {
-        title: ' Top--250 ',
+        title: 'Top--250',
         url: '/top250'
       }]
     }
@@ -55,31 +55,34 @@ export default {
   .header{
     background: white;
     width: 100%;
-    height: 76px;
-    border: grey solid thin;
+    height: 73px;
+    border-bottom: grey solid thin;
     .header-container{
-      width: 50%;
+      // background-color: orange;
+      width: 1200px;
       margin: auto;
       .douban-search{
+        width: 350px;
+        // background-color: yellow;
         display: inline-block;
         line-height: 75px;
-        vertical-align: top;
-        width: 240px;
-        margin-left: 0px;
+        vertical-align: right;
+        margin-left: 274px;
         input{
-          height: 34px;
+          height: 50px;
         }
       }
       .title{
+          // background-color: green;
           color: @doubanColor;
-          margin-top: 6px;
-          font-size: 36px;
+          font-size: 30px;
           font-weight: bold;
           line-height: 75px;
           float: left;
       }
       .bar{
-        width: 384px;
+        // background-color: blue;
+        width: 406px;
         margin-left: 50px;
         height: 75px;
         float: left;
@@ -88,12 +91,14 @@ export default {
             list-style: none;
             float: left;
             line-height: 70px;
-            margin-left: 8px;
             cursor: pointer;
           }
           a{
             display: inline-block;
-            padding: 2px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left: 30px;
+            padding-right: 30px;
             font-size: 18px;
             color: #666;
             text-decoration: none;
