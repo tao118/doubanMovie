@@ -5,7 +5,7 @@
         <ul>
           <li class="film-pic">
             <a @click="showDetail(subject.id)">
-              <img class="movieImg" :src="subject.images.small" alt="">
+              <img class="movieImg" :src="subject.images.large" alt="">
             </a>
           </li>
           <li class="film-name">
@@ -49,15 +49,14 @@ export default {
     }
   },
   methods: {
-    showDetail (id) {
+    showDetail: function () {
       $.ajax({
-        type: 'Get',
+        type: 'GET',
         url: `/movie/subject/${state.id}`,
         success: function (data) {
-          return data
         }
       })
-      this.$router.push({path: '/movieDetail', query: {id: id}})
+      this.$router.push({path: '/movieDetail', query: {id: state.id}})
     }
   },
   computed: {

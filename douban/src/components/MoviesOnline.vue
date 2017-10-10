@@ -15,7 +15,7 @@
 <script>
 import MoviesTag from '@/components/MoviesTag.vue'
 import {API} from '../common/api'
-var moviesOnlineList = {
+const moviesOnlineList = {
   subjects: []
 }
 export default {
@@ -25,9 +25,6 @@ export default {
     }
   },
   mounted () {
-    /*
-    **获取正在上映列表
-    */
     this.getMoviesOnline()
   },
   components: { MoviesTag },
@@ -39,9 +36,11 @@ export default {
       return moviesOnlineList
     },
     getMoviesOnline () {
-      API.get('/movie/in_theaters', {city: '深圳'}).then((res) => {
-        console.log(res)
-        if (!res || res.error_tip) return
+      API.get('/movie/in_theaters', {city: '深圳'}).then(({data}) => {
+        this.moviesOnlineList = data
+        console.log(data)
+      }, (data) => {
+        console.log(data)
       })
     }
   }
