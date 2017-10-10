@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less">
-@import '../../../style/base.less';
+@import '../../style/base.less';
   .item.upComing {
     position: relative;
     float: left;

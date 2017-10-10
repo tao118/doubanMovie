@@ -33,8 +33,8 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less">
-@import '../../../style/color.less';
-@import "../../../style/base";
+@import '../../style/color.less';
+@import "../../style/base";
   .search-tag{
     padding: 20px;
     border-top: 1px dashed @line;

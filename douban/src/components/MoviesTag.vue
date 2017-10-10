@@ -1,11 +1,11 @@
 <template>
   <div class="moivesList" v-loading="loadingMoviesOnline">
     <div class="movie-container">
-      <div class="movieTag" v-for="(subject,index) in data.subjects" v-if="index < maxNum">
+      <div class="movieTag" v-for="(subject,index) in data.subjects" :key="index.id" v-if="index < maxNum" >
         <ul>
           <li class="film-pic">
             <a @click="showDetail(subject.id)">
-              <img class="movieImg" :src="subject.images.large" alt="">
+              <img class="movieImg" :src="subject.images.small" alt="">
             </a>
           </li>
           <li class="film-name">
@@ -28,6 +28,10 @@
 </template>
 
 <script>
+import $ from 'jquery'
+var state = {
+  id: ''
+}
 export default {
   props: {
     data: Object
@@ -46,13 +50,19 @@ export default {
   },
   methods: {
     showDetail (id) {
-      this.$store.commit('DETAIL_LOADING', {loading: true})
-      this.$store.router.push({path: '/movieDetail', query: {id: id}})
+      $.ajax({
+        type: 'Get',
+        url: `/movie/subject/${state.id}`,
+        success: function (data) {
+          return data
+        }
+      })
+      this.$router.push({path: '/movieDetail', query: {id: id}})
     }
   },
   computed: {
     loadingMoviesOnline () {
-      return this.$store.getters.loadingMoviesOnline
+      return true
     }
   }
 }

@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @import "../../../style/base";
+  @import "../../style/base";
   .container-moving{
     width: 950px;
     margin: 30px auto;

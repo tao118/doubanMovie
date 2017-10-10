@@ -12,8 +12,7 @@
 </template>
 
 <script>
-import {API} from '../common/api'
-let Api = new API()
+import {API} from '../common/api.js'
 export default {
   props: {
     data: Object
@@ -33,7 +32,7 @@ export default {
     this.$store.dispatch('loadingtop250')
     window.onscroll = () => {
       if (!this.isLoad) {
-        if (Api.getScrollTop() + Api.getClientHeight() + 400 > Api.getScrollHeight()) {
+        if (API.getScrollTop() + API.getClientHeight() + 400 > API.getScrollHeight()) {
           let page = this.page + 1
           if (this.page <= this.totalPage) {
             this.isLoad = true
@@ -66,5 +65,9 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less">
-
+#wrapper {
+  width: 950px;
+  min-height: 500px;
+  margin: 30px auto;
+}
 </style>
