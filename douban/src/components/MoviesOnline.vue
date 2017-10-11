@@ -3,56 +3,36 @@
     <div class="tit">
       <h1>电影票 - {{city}}</h1>
       <div class="hd">
-        <ul class="tab-hd clearfix">
-          <li class="on">正在上映(售票中)</li>
-        </ul>
+        <p class="on">正在上映(售票中)</p>
       </div>
-      <MoviesTag :data="moviesOnlineList" class="moviesTag"></MoviesTag>
     </div>
+    <MoviesTag class="moviesTag"></MoviesTag>
   </div>
 </template>
 
 <script>
-import MoviesTag from '@/components/MoviesTag.vue'
-import {API} from '../common/api'
-const moviesOnlineList = {
-  subjects: []
-}
+// import MoviesTag from '@/components/MoviesTag.vue'
 export default {
   data () {
     return {
       city: '深圳'
     }
   },
-  mounted () {
-    this.getMoviesOnline()
-  },
-  components: { MoviesTag },
-  computed: {
-    moviesOnlineList () {
-      for (let subject of moviesOnlineList.subjects) {
-        subject.rating.average = subject.rating.average / 2
-      }
-      return moviesOnlineList
-    },
-    getMoviesOnline () {
-      API.get('/movie/in_theaters', {city: '深圳'}).then(({data}) => {
-        this.moviesOnlineList = data
-        console.log(data)
-      }, (data) => {
-        console.log(data)
-      })
+  // components: { MoviesTag }
+  components: {
+    'MoviesTag': (resolve) => {
+      require(['@/components/MoviesTag.vue'], resolve)  // 异步调用
     }
   }
 }
 </script>
 
-<style rel="stylesheet/less" lang="less">
+<style rel="stylesheet/less" lang="less" scopedSlots>
   .MoviesOnline {
-    margin-bottom: 20px;
+    width: 1200px;
+    margin: 0 auto;
     .tit {
       width: 1200px;
-      margin: 0 auto;
       margin-top: 20px;
       h1 {
         display: inline-block;

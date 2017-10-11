@@ -90,9 +90,9 @@ export default {
 }
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style rel="stylesheet/less" lang="less">
   @import "../../style/base";
-  .container-moving{
+  .container-moviesOnline{
     width: 950px;
     margin: 30px auto;
     .content{

@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper" v-loading="loadingMoviesOnline">
+  <div id="wrapper">
     <h2>Top250排行榜</h2>
     <div class="indent">
     <!-- 缩进 -->
@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import {API} from '../common/api.js'
+import {Api} from '../common/api.js'
+let API = new Api()
 export default {
   props: {
     data: Object

@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import MoviesOnline from '@/components/MoviesOnline.vue'
-import MoviesUpcoming from '@/components/MoviesUpcoming.vue'
-import Top250 from '@/components/top250.vue'
-import SearchList from '@/components/SearchList.vue'
-import MoviesDetail from '@/components/MoviesDetail.vue'
+import MoviesOnline from '../components/MoviesOnline.vue'
+import MoviesUpcoming from '../components/MoviesUpcoming.vue'
+import Top250 from '../components/top250.vue'
+import SearchList from '../components/SearchList.vue'
+import MoviesDetail from '../components/MoviesDetail.vue'
 
 Vue.use(Router)
 /*

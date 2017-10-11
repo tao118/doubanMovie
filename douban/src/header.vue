@@ -4,7 +4,7 @@
       <a class="title">豆瓣电影</a>
       <div class="bar">
         <ul>
-          <li v-for="bar in barList" @click="choiceUrl(bar.title)" >
+          <li v-for="bar in barList" @click="chooseUrl(bar.title)">
             <router-link :to="bar.url" :class="title===bar.title? 'active':''">{{bar.title}}</router-link>
           </li>
         </ul>
@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    choiceUrl (title) {
+    chooseUrl (title) {
       this.title = title
     },
     searchMovie () {
@@ -51,7 +51,6 @@ export default {
 </script>
 
 <style lang="less" rel="stylesheet/less">
-@import "../style/color";
   .header{
     background: white;
     width: 100%;
@@ -74,7 +73,7 @@ export default {
       }
       .title{
           // background-color: green;
-          color: @doubanColor;
+          color: #27a;
           font-size: 30px;
           font-weight: bold;
           line-height: 75px;
