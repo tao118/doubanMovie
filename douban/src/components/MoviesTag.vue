@@ -37,7 +37,7 @@ export default {
     return {
       value: 0,
       articles: [],
-      maxNum: 3
+      maxNum: 8
     }
   },
   mounted: function () {
@@ -63,67 +63,60 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/less" lang="less">
+<style rel="stylesheet/less" lang="less" scoped>
 @import "../../style/base";
-.moviesList{
+.movie-container{
   width: 1200px;
-  margin: 0 auto;
-  min-height: 500px;
-  .movie-container{
-    width: 1200px;
-    border-top: 1px dashed #ccc;
-    margin-top: -10px;
-    .movieTag{
-      padding-top: 20px;
-      width: 118px;
-      height: 270px;
-      overflow: hidden;
-      font-size: 12px;
-      text-align: center;
-      display: inline-block;
-      margin: 0 20px 20px 0;
-      ul{
-        width: 500px;
-        margin: 0 auto;
+
+.movieTag{
+  margin-top: 10px;
+  width: 1200px;
+ul{
+  width: 202px;
+  height: 365px;
+        margin-right: 50px;
         padding: 0;
-        li{
-          list-style: none;
-        }
-      }
-      a{
-        cursor: pointer;
-        text-decoration: none;
-      }
-      .film-pic{
-        height: 180px;
-        margin-bottom: 12px;
-        overflow: hidden;
-        a{
-          img{
-            width: 128px;
-            vertical-align: middle;
-          }
-        }
-      }
-      .film-name{
-        font-size: 14px;
+        float: left;
+.film-pic{
+  overflow: hidden;
+  border: #D8D8D8 solid thin;
+  a{
+    img{
+      width: 202px;
+      height: 250px;
+      vertical-align: middle;
+    }
+  }
+}
+.film-name{
+  padding-top: 6px;
+        width: 200px;
+        font-size: 16px;
         white-space: nowrap;
         height: 22px;
         overflow: hidden;
+        text-align: center;
+        border-left: #D8D8D8 solid thin;
+        border-right: #D8D8D8 solid thin;
         a{
           display: inline-block;
           word-spacing: normal;
           height: 24px;
           line-height: 24px;
           text-decoration: none;
-          color: black;
+          color: #686868;
         }
-      }
-      .film-rate{
+      }       
+.film-rate{
         display: inline-block;
-        margin: 4px auto 2px;
-        height: 19px;
+        height: 18px;
+        text-align: center;
+        width: 200px;
+        padding-bottom: 6px;
+        border-left: #D8D8D8 solid thin;
+        border-right: #D8D8D8 solid thin;
         .el-rate{
+          text-align: center;
           display: inline-block;
           .el-rate__icon{
             font-size: 12px;
@@ -131,34 +124,48 @@ export default {
         }
         .rateNum{
           display: inline-block;
-          font-size: 12px;
+          color: orange;
+          font-size: 16px;
         }
       }
-      .film-button{
+        
+        
+.film-button{
+        width: 198px;
         span{
           display: block;
           margin:0 auto;
+          padding-top: 6px;
           text-align: center;
-          width: 90px;
-          height: 24px;
+          width: 200px;
+          height: 30px;
           line-height: 24px;
-          background-color:#268dcd;
-          border-radius: 2px;
+          background-color: white;
+          border: #D8D8D8 solid thin;
           a{
             color: red;
           }
         }
+        span:hover{
+          background-color: red;
+          a{
+            color: white;
+          }
+        }
       }
-    }
-    .load-more{
+       
+
+}
+}
+.load-more{
       cursor: pointer;
-      width: 530px;
+      width: 958px;
       height: 30px;
       line-height: 30px;
       text-align: center;
+      float: left;
       background: #eee;
       color: #27a;
     }
-  }
-}
+    }
 </style>

@@ -38,11 +38,10 @@ export default {
         display: inline-block;
         width: 126px;
         font-size: 20px;
-        color: #808080;
+        color: #989898;
       }
       .hd {
         border: none;
-        margin-top:8px;
         .on {
           font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           color:red;
