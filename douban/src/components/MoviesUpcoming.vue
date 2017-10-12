@@ -1,5 +1,6 @@
 <template>
   <div class="grid-950 clearfix">
+    <poster class="poster"></poster>
     <article class="container">
       <div class="tit">
         <h1>{{city}}-影讯</h1>
@@ -24,59 +25,46 @@
 </template>
 
 <script>
+import {Api} from '../common/api'
+let API = new Api()
 export default {
   data () {
     return {
-      city: '深圳'
+      city: '深圳',
+      upcomBody: {
+        start: 0
+      }
     }
   },
-  mounted () {
-    /**
-    * 获得即将上映列表
-    */
-    this.$store.dispatch('getMoviesUpcoming')
+  mounted: function () {
+    API.get('api/movie/coming_soon?city=%E6%B7%B1%E5%9C%B3', {start: this.upcomBody.start + 1}, {
+      emulateJSON: true
+    }).then(function (response) {
+      if (this.upcomBody.subjects && this.upcomBody.subjects.length) {
+        response.subjects = this.upcomBody.subjects.concat(response.subjects)
+        this.pageload = false
+      }
+      this.upcomBody = response.data
+    }, function (response) {
+      console.log(response)
+    })
   },
   methods: {
-    /**
-    * function 切换城市
-    * @param command
-    */
-    changeCity (command) {
-      this.$store.commit('UP_COMING', {loading: true})
-      this.$store.commit('MOVIE_CITY', {city: command})
-      this.$store.dispatch('getUpcoming')
-    },
     moredata () {
-      this.$store.commit('PAGE_LOAD', {pageload: true})
-      this.$store.dispatch('getUpcoming')
-      var up = this.$store.getters.upcomBody
+      this.pageload = true
+      this.getUpcoming()
+      var up = this.upcomBody
       if (up.start * up.count > up.total) {
         this.nodata = true
       }
     }
   },
-  computed: {
-    /**
-    * 获取即将上映列表
-    * @returns {computed.upcomBody|getters.upcomBody|state.upcomBody|{}|*}
-    */
-    upcomBody () {
-      return this.$store.getters.upcomBody
-    },
-    /**
-    * loading动画
-    * @returns {computed.loadingUpcoming|boolean|getters.loadingUpcoming|*}
-    */
-    loadingUpcoming () {
-      return this.$store.getters.loadingUpcoming
-    },
-    pageload () {
-      return this.$store.getters.pageload
-    }
-  },
   components: {
     'UpcomingTag': (resolve) => {
       require(['./UpcomingTag.vue'], resolve)
+    },
+    'poster': (resolve) => {
+      require(['@/components/poster.vue'], resolve)
     }
   }
 }
@@ -87,7 +75,7 @@ export default {
 
   .container {
     float: left;
-    width: 590px;
+    width: 1200px;
   }
 
   .right-side {

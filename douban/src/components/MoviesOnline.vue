@@ -1,5 +1,6 @@
 <template>
   <div class="MoviesOnline">
+    <poster class="poster"></poster>
     <div class="tit">
       <h1>电影票 - {{city}}</h1>
       <div class="hd">
@@ -22,12 +23,15 @@ export default {
   components: {
     'MoviesTag': (resolve) => {
       require(['@/components/MoviesTag.vue'], resolve)  // 异步调用
+    },
+    'poster': (resolve) => {
+      require(['@/components/poster.vue'], resolve)
     }
   }
 }
 </script>
 
-<style rel="stylesheet/less" lang="less" scopedSlots>
+<style rel="stylesheet/less" lang="less" scoped>
   .MoviesOnline {
     width: 1200px;
     margin: 0 auto;
@@ -45,7 +49,7 @@ export default {
         .on {
           font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           color:red;
-          font-size:30px;
+          font-size:28px;
         }
       } 
     }

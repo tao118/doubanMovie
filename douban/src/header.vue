@@ -66,7 +66,7 @@ export default {
         display: inline-block;
         line-height: 75px;
         vertical-align: right;
-        margin-left: 274px;
+        margin-left: 235px;
         input{
           height: 50px;
         }

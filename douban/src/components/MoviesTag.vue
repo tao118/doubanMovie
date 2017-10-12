@@ -1,43 +1,38 @@
 <template>
-  <div class="moivesList" >
-    <div class="movie-container">
-      <div class="movieTag" v-for="(article,index) in articles" :key="index.id" v-if="index < maxNum" >
-        <ul>
-          <li class="film-pic">
-            <a @click="showDetail(article.id)">
-              <img class="movieImg" :src="article.images.large" alt="">
-            </a>
-          </li>
-          <li class="film-name">
-            <a href="">{{article.title}}</a>
-          </li>
-          <li class="film-rate">
-            <el-rate v-model="article.rating.average" disabled></el-rate>
-            <span class="rateNum">{{article.rating.average * 2}}</span>
-          </li>
-          <li class="film-button">
-            <span>
-              <a href="">购票</a>
-            </span>
-          </li>
-        </ul>
-      </div>
-      <div class="load-more" @click ="maxNum = articles.length" v-if="maxNum < articles.length">加载更多</div> 
+  <div class="movie-container">
+    <div class="movieTag" v-for="(article,index) in articles" :key="index" v-if="index < maxNum" >
+      <ul>
+        <li class="film-pic">
+          <a @click="showDetail(article.id)">
+            <img class="movieImg" :src="article.images.large" alt="">
+          </a>
+        </li>
+        <li class="film-name">
+          <a href="">{{article.title}}</a>
+        </li>
+        <li class="film-rate">
+          <el-rate v-model="article.rating.average" disabled></el-rate>
+          <span class="rateNum">{{article.rating.average * 2}}</span>
+        </li>
+        <li class="film-button">
+          <span>
+            <a href="">购票</a>
+          </span>
+        </li>
+      </ul>
     </div>
+    <div class="load-more" @click ="maxNum = articles.length" v-if="maxNum < articles.length">加载更多</div> 
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
-var state = {
-  id: ''
-}
+// import $ from 'jquery'
 export default {
   data () {
     return {
       value: 0,
       articles: [],
-      maxNum: 8
+      maxNum: 5
     }
   },
   mounted: function () {
@@ -50,14 +45,8 @@ export default {
     })
   },
   methods: {
-    showDetail: function () {
-      $.ajax({
-        type: 'GET',
-        url: `/movie/subject/${state.id}`,
-        success: function (data) {
-        }
-      })
-      this.$router.push({path: '/movieDetail', query: {id: state.id}})
+    showDetail: function (movieId) {
+      this.$router.push({path: '/movieDetail', query: {id: movieId}})
     }
   }
 }
@@ -67,29 +56,28 @@ export default {
 @import "../../style/base";
 .movie-container{
   width: 1200px;
-
-.movieTag{
-  margin-top: 10px;
-  width: 1200px;
-ul{
-  width: 202px;
-  height: 365px;
-        margin-right: 50px;
-        padding: 0;
-        float: left;
-.film-pic{
-  overflow: hidden;
-  border: #D8D8D8 solid thin;
-  a{
-    img{
+  .movieTag{
+    margin-top: 10px;
+    width: 1200px;
+    ul{
       width: 202px;
-      height: 250px;
-      vertical-align: middle;
-    }
-  }
-}
-.film-name{
-  padding-top: 6px;
+      height: 370px;
+      margin-right: 38px;
+      padding: 0;
+      float: left;
+      .film-pic{
+        overflow: hidden;
+        border: #D8D8D8 solid thin;
+        a{
+          img{
+            width: 202px;
+            height: 250px;
+            vertical-align: middle;
+          }
+        }
+      }
+      .film-name{
+        padding-top: 6px;
         width: 200px;
         font-size: 16px;
         white-space: nowrap;
@@ -107,7 +95,7 @@ ul{
           color: #686868;
         }
       }       
-.film-rate{
+      .film-rate{
         display: inline-block;
         height: 18px;
         text-align: center;
@@ -127,10 +115,8 @@ ul{
           color: orange;
           font-size: 16px;
         }
-      }
-        
-        
-.film-button{
+      } 
+      .film-button{
         width: 198px;
         span{
           display: block;
@@ -153,19 +139,17 @@ ul{
           }
         }
       }
-       
-
-}
-}
-.load-more{
-      cursor: pointer;
-      width: 958px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      float: left;
-      background: #eee;
-      color: #27a;
     }
-    }
+  }
+  .load-more{
+    cursor: pointer;
+    width: 1162px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: left;
+    background: #eee;
+    color: #27a;
+  }
+}
 </style>

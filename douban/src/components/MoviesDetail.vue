@@ -1,5 +1,5 @@
 <template>
-  <div class="container-moviesOnline" v-loading="loadingDetail">
+  <div class="container-moviesOnline">
     <div class="content">
       <h1>
         <span class="title">{{movieDetail.title}}/{{movie.original_title}}</span>
@@ -62,29 +62,35 @@
 </template>
 
 <script>
+import {Api} from '../common/api'
+let API = new Api()
 export default {
   name: 'MoviesDetail',
   data () {
     return {
-
+      movieDetail: []
     }
   },
-  mounted () {
-    let id = this.$route.query.id
-    this.$store.commit('MOVIESONLINE_ID', {id})
-    this.$store.dispatch('getMovieDetail')
+  mounted: function () {
+    let id = id
+    API.get(`/movie/subject/${id}`, {}, {
+      emulateJSON: true
+    }).then(function (response) {
+      this.movieDetail = response.data.subject[id]
+    }, function (response) {
+      console.log(response)
+    })
+  },
+  computed: {
+    // 此计算属性将始终是个数组
+    id () {
+      const id = this.$route.query.id
+      return Array.isArray(id) ? id : [id]
+    }
   },
   components: {
     'MovieComment': (resolve) => {
       require(['./MoviesComment.vue'], resolve)
-    }
-  },
-  computed: {
-    movieDetail () {
-      return this.$store.getters.movieDetail
-    },
-    loadingDetail () {
-      return this.$store.getters.loadingDetail
     }
   }
 }
