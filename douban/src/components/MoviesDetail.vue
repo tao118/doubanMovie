@@ -1,22 +1,25 @@
 <template>
   <div class="container-moviesOnline">
     <div class="content">
+      <span>
+        <img class="bg-pic" src="../assets/bg.png" alt="">
+      </span>
+      <div class="mainpic">
+        <a href="https://movie.douban.com/subject/25900945/photos?type=R"><img class="movieImg" :src="movieDetail.images.large" alt="" title="点击查看更多海报"></a>
+      </div>
       <h1>
-        <span class="title">{{movieDetail.title}}/{{movie.original_title}}</span>
+        <span class="title">{{movieDetail.title}}</span>
         <span class="year">({{movieDetail.year}})</span>
       </h1>
-      <div class="detail clearfix">
+      <div class="detail">
         <div class="left-side">
           <div class="actor-list">
             <div class="subject">
-              <div class="mainpic">
-                <a href="https://movie.douban.com/subject/25900945/photos?type=R"><img class="movieImg" :src="movieDetail.images.medium" alt="" title="点击查看更多海报"></a>
-              </div>
               <div class="info">
-                <span class="p1">导演</span><span v-for="item in movieDetail.directors" class="attrs">{{item.name}}</span><br>
-                <span class="p1">主演</span><span v-for="item in movieDetail.casts" class="attrs">{{item.name}}/</span><br>
-                <span class="p1">类型</span><span v-for="item in movieDetail.genres" class="attrs">{{item}}/</span><br>
-                <span class="p1">制片国家/地区</span><span v-for="(item,index) in movieDetail.countries" class="attrs">{{item}}</span><br>
+                <span class="p1">导演：</span><span v-for="item in movieDetail.directors" class="attrs">{{item.name}}</span><br>
+                <span class="p1">主演：</span><span v-for="item in movieDetail.casts" class="attrs">{{item.name}}/</span><br>
+                <span class="p1">类型：</span><span v-for="item in movieDetail.genres" class="attrs">{{item}}/</span><br>
+                <span class="p1">制片国家/地区：</span><span v-for="(item,index) in movieDetail.countries" class="attrs">{{item}}</span><br>
               </div>
             </div>
             <div class="people-sroce">
@@ -29,8 +32,9 @@
               </div>
             </div>
           </div>
-          <div class="insterest-people">
-            <div class="top">
+        </div>
+        <div class="insterest-people">
+          <div class="top">
               <a href=""><button>想看</button></a>
               <a href=""><button>看过</button></a>
               <span class="score-to">评价：<el-rate show-text></el-rate></span>
@@ -49,11 +53,10 @@
             <p class="summary-title">{{movieDetail.title}}的剧情简介：</p>
             <p class="intro">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movieDetail.summary}}</p>
           </div>
-          <MovieComment :title="movieDetail.title"></MovieComment>
-        </div>
+          <MovieComment :title="movieDetail.title" class="short-comment"></MovieComment>
         <div class="right-side">
           <div class="ticket">
-            <a class="ticket-btn" href="https://movie.douban.com/subject/25900945/cinema/?from=subject-page">豆瓣购票大优惠23元起</a>
+            <a class="ticket-btn" href=""></a>
           </div>
         </div>
       </div>
@@ -62,31 +65,22 @@
 </template>
 
 <script>
-import {Api} from '../common/api'
-let API = new Api()
 export default {
   name: 'MoviesDetail',
   data () {
     return {
-      movieDetail: []
+      movieDetail: {}
     }
   },
   mounted: function () {
-    let id = id
-    API.get(`/movie/subject/${id}`, {}, {
+    let id = this.$route.query.id
+    this.$http.get(`api//movie/subject/${id}`, {}, {
       emulateJSON: true
     }).then(function (response) {
-      this.movieDetail = response.data.subject[id]
+      this.movieDetail = response.data
     }, function (response) {
       console.log(response)
     })
-  },
-  computed: {
-    // 此计算属性将始终是个数组
-    id () {
-      const id = this.$route.query.id
-      return Array.isArray(id) ? id : [id]
-    }
   },
   components: {
     'MovieComment': (resolve) => {
@@ -96,76 +90,105 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/less" lang="less">
-  @import "../../style/base";
+<style rel="stylesheet/less" lang="less" scoped>
+  // @import "../../style/base";
   .container-moviesOnline{
-    width: 950px;
-    margin: 30px auto;
+    width: 1200px;
+    margin: 0 auto;
     .content{
-      min-height: 420px;
+      width: 1200px;
+      .bg-pic{
+        height: 300px;
+        width: 1162px;
+        vertical-align: left;
+        overflow: hidden;
+      }
+      .mainpic{
+        position: relative;
+        top: -260px;
+        left: 170px;
+        margin: 3px 12px 0 0;
+        max-width: 202px;
+        overflow: hidden;
+        text-align: center;
+        float: left;
+        height: 280px;
+        border: white solid 5px;
+        a{
+          img{
+            margin-bottom: 10px;
+            max-width: 202px;
+          }
+        }
+        .more-pic{
+          text-decoration: none;
+          color: #BBBBBB;
+          font-size: 12px;
+          text-align: center;
+        }
+      }
       h1{
+        position: relative;
+        left: 190px;
+        top: -255px;
+        float: left;
         word-break: break-all;
         display: block;
         font-size: 25px;
         font-weight: bold;
         color: #494949;
         padding: 0 0 15px 0;
+        .title{
+          color: white;
+        }
         .year{
-          color: #888;
+          color: white;
         }
       }
       .detail{
+        clear: both;
+        height: 150px;
         .left-side{
+          clear: both;
+          position: relative;
+          left: 416px;
+          top: -480px;
+          height: 160px;
           float: left;
           width:590px;
           padding-right: 40px;
           .actor-list{
             margin-bottom: 30px;
             .subject{
-              width:415px;
+              width:320px;
               float: left;
-              .mainpic{
-                margin: 3px 12px 0 0;
-                max-width: 155px;
-                overflow: hidden;
-                text-align: center;
-                float: left;
-                height: 140px;
-                a{
-                  img{
-                    margin-bottom: 10px;
-                    max-width: 100px;
-                  }
-                }
-                .more-pic{
-                  text-decoration: none;
-                  color: #BBBBBB;
-                  font-size: 12px;
-                  text-align: center;
-                }
-              }
               .info{
                 float: left;
                 max-width: 248px;
                 word-wrap: break-word;
                 .p1{
                   line-height: 150%;
-                  color: #666666;
+                  color: white;
                 }
                 .attrs{
-                  color: #37a;
+                  color: white;
                 }
               }
             }
             .people-sroce{
               float: left;
               width:155px;
+              height: 105px;
               margin: 2px 0 0 0;
               padding: 0 0 0 15px;
               border-left:1px solid #eaeaea;
-              color: #aaa;
+              p{
+                color: pink;
+                margin-top: -2px;
+              }
               .score{
                 font-size: 25px;
+                color: gold;
                 margin-right: 10px;
               }
               .el-rate{
@@ -177,67 +200,92 @@ export default {
                 }
               }
               .comment-num{
-                margin-top: -20px;
-                margin-left: 45px;
-                color: #666699;
+                margin-top:5px;
+                color: pink;
               }
             }
           }
-          .insterest-people{
+        }
+        .insterest-people{
+          width: 600px;
+          margin-left: 170px;
+          margin-top: -300px;
+          .top{
             clear: both;
-            padding:20px 0 3px;
-            .top{
-                button{
-                  display: inline-block;
-                  width:50px;
-                  height: 25px;
-                  background:#fae9da;
-                  border: 1px solid #ca6445;
-                  color: #333;
-                  margin-right: 10px;
-                  border-radius: 4px;
-                }
+            position: relative;
+            left: 6px;
+            top: -405px;
+            button{
+              display: inline-block;
+              width:50px;
+              height: 25px;
+              background:#fae9da;
+              border: 1px solid #ca6445;
+              color: #333;
+              margin-right: 10px;
+              border-radius: 4px;
             }
-            .score-to{
-              .el-rate{
-                margin-left: 5px;
-                display: inline-block;
-                .el-rate__icon{
-                  font-size: 12px;
-                }
+          }
+          .score-to{
+            .el-rate{
+              margin-left: 5px;
+              display: inline-block;
+              .el-rate__icon{
+                font-size: 12px;
               }
             }
           }
-          .gtleft{
-            padding: 4px 4px 0 0;
-            float: left;
-            .ul{
-              padding-top: 6px;
-              li{
-                float: left;
-                display: inline;
-                line-height: 14px;
-                margin-right: 15px;
-                img{
-                  max-width: 100%;
-                  margin-right: 5px;
-                }
-                a{
-                  text-decoration: none;
-                  color: #37a;
-                }
+        }
+        .gtleft{
+          clear: both;
+          position: relative;
+          left: 177px;
+          top: -400px;
+          padding: 4px 4px 0 0;
+          float: left;
+          .ul{
+            padding-top: 6px;
+            li{
+              float: left;
+              display: inline;
+              line-height: 14px;
+              margin-right: 15px;
+              img{
+                max-width: 100%;
+                margin-right: 5px;
+              }
+              a{
+                text-decoration: none;
+                color: #37a;
               }
             }
           }
-          .summary{
-            float: left;
-            clear: both;
-            margin-top: 20px;
-            .summary-title{
-              color: #007722;
-              font-size: 16px;
-            }
+        }
+        .summary{
+          clear: both;
+          position: relative;
+          left: 177px;
+          top: -412px;
+          width: 714px;
+          float: left;
+          clear: both;
+          margin-top: 20px;
+          .summary-title{
+            color: #007722;
+            font-size: 16px;
           }
+        }
+        .short-comment{
+          clear: both;
+          position: relative;
+          left: 177px;
+          top: -426px;
+        }
+        .right-side{
+          clear: both;
+          position: relative;
+          left: 1000px;
+          top: -715px;
         }
       }
     }

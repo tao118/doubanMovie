@@ -34,19 +34,19 @@ const router = new VueRouter({
     }, {
       path: '/upcoming',
       name: 'MoviesUpcoming',
-      components: MoviesUpcoming
+      component: MoviesUpcoming
     }, {
       path: '/top250',
       name: 'Top250',
-      components: Top250
+      component: Top250
     }, {
       path: '/search',
       name: 'SearchList',
-      components: SearchList
+      component: SearchList
     }, {
       path: '/movieDetail',
       name: 'MoviesDetail',
-      components: MoviesDetail
+      component: MoviesDetail
     }]
 })
 

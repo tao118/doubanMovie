@@ -100,7 +100,7 @@ export default {
         height: 18px;
         text-align: center;
         width: 200px;
-        padding-bottom: 6px;
+        padding-bottom: 12px;
         border-left: #D8D8D8 solid thin;
         border-right: #D8D8D8 solid thin;
         .el-rate{

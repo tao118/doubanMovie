@@ -1,6 +1,8 @@
 <template>
   <div class="poster-container">
-      <img class="movieImg" src="../assets/poster.jpg" alt="">
+      <a href="https://movie.douban.com/subject/26580232/" class="image">
+        <img class="poster-pic" src="../assets/poster.jpg" alt="">
+      </a>
   </div>
 </template>
 

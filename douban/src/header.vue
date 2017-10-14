@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-container">
-      <a class="title">豆瓣电影</a>
+      <a class="title">魔速电影</a>
       <div class="bar">
         <ul>
           <li v-for="bar in barList" @click="chooseUrl(bar.title)">
@@ -66,7 +66,7 @@ export default {
         display: inline-block;
         line-height: 75px;
         vertical-align: right;
-        margin-left: 235px;
+        margin-left: 201px;
         input{
           height: 50px;
         }
@@ -81,7 +81,7 @@ export default {
       }
       .bar{
         // background-color: blue;
-        width: 406px;
+        width: 440px;
         margin-left: 50px;
         height: 75px;
         float: left;

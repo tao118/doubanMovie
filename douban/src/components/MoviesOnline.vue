@@ -45,7 +45,8 @@ export default {
         color: #989898;
       }
       .hd {
-        border: none;
+        width: 1162px;
+        border-bottom: 1px dashed #ccc;
         .on {
           font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           color:red;
