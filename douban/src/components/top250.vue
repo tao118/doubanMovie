@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import {Api} from '../common/api'
+let API = new Api()
 export default {
   props: {
     data: Object
@@ -23,12 +25,19 @@ export default {
       isLoad: false,
       page: 1,
       totalPage: 0,
-      start: 1
+      start: 1,
+      ranking250: {}
     }
   },
   mounted () {
-    this.$store.commit('PAGE_START', {start: 0})
-    this.$store.dispatch('loadingtop250')
+    // this.$store.commit('PAGE_START', {start: 0})
+    // this.$store.dispatch('loadingtop250')
+    API.get('api/movie/top250', {start: 0, count: 10}).then(res => {
+      let subject = this.ranking250.subjects
+      if (subject !== undefined) {
+        res.subjects = subject.concat(res.subjects)
+      }
+    })
     window.onscroll = () => {
       if (!this.isLoad) {
         if (this.getScrollTop() + this.getClientHeight() + 400 > this.getScrollHeight()) {
@@ -37,8 +46,12 @@ export default {
             this.isLoad = true
             this.page = page
             this.start = (this.page - 1) * 10
-            this.$store.commit('PAGE_START', {start: this.start})
-            this.$store.dispatch('loadingtop250')
+            API.get('api/movie/top250', {start: this.start, count: 10}).then(res => {
+              let subject = this.ranking250.subjects
+              if (subject !== undefined) {
+                res.subjects = subject.concat(res.subjects)
+              }
+            })
           }
         }
       }
@@ -52,12 +65,12 @@ export default {
   computed: {
     ranking250 () {
       this.isLoad = false
-      let ranklist = this.$store.getters.ranking250
+      let ranklist = this.ranking250
       this.totalPage = ranklist.total
       return ranklist
     },
     loadingMoviesOnline () {
-      return this.$store.getters.loadingMoviesOnline
+      return true
     },
     // 获取滚动条当前位置
     getScrollTop () {
