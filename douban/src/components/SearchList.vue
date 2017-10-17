@@ -1,45 +1,38 @@
 <template>
-  <div class="search-list" v-loading="searchLoading">
-    <SearchTag v-for="(subject,index) in searchList.subjects" :subject="subject" :key="index"></SearchTag>
+  <div class="search-list">
+    <SearchTag v-for="(item,index) in items" :item="item" :key="index"></SearchTag>
   </div>
 </template>
 
 <script>
+import {Api} from '../common/api'
+let API = new Api()
 export default {
+  // props: {
+  //   items: Object
+  // },
   data () {
     return {
-
+      items: []
     }
   },
   mounted () {
-    if (this.searchText === '') {
-      let searchText = this.$route.query.searchText
-      this.$store.commit('SEARCH_TEXT', {searchText})
-      this.$store.dispatch('getSearchList')
-    }
+    let searchText = this.$route.query.searchText
+    API.get('api/movie/search', {q: searchText}).then((response) => {
+      this.items = response.subjects
+    })
   },
   components: {
     'SearchTag': (resolve) => {
       require(['./SearchTag.vue'], resolve)
     }
-  },
-  computed: {
-    searchText () {
-      return this.$store.getters.searchText
-    },
-    searchList () {
-      return this.$store.getters.searchList
-    },
-    searchLoading () {
-      return this.$store.getters.searchLoading
-    }
   }
 }
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less" rel="stylesheet/less" scoped>
 .search-list{
-  width: 950px;
+  width: 900px;
   min-height: 500px;
   margin: 30px auto;
 }

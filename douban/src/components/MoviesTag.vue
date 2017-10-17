@@ -36,7 +36,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$http.get('api/movie/in_theaters?city=%E6%B7%B1%E5%9C%B3', {}, {
+    this.$http.get('api/movie/in_theaters?city=深圳', {}, {
       emulateJSON: true
     }).then(function (response) {
       this.articles = response.data.subjects

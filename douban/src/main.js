@@ -40,7 +40,7 @@ const router = new VueRouter({
       name: 'Top250',
       component: Top250
     }, {
-      path: '/search',
+      path: '/searchlist',
       name: 'SearchList',
       component: SearchList
     }, {

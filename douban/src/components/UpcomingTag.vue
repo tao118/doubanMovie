@@ -4,7 +4,7 @@
       <ul>
         <li class="film-pic">
           <a @click="showDetail(item.id)">
-            <img class="movieTag" :src="item.images.large">
+            <img class="movieImg" :src="item.images.large">
           </a>
         </li>
         <li class="intro">
@@ -12,11 +12,11 @@
             <a href="" class="">{{item.title}}</a>
           </h3>
           <h3>
-            <p class="dt2">11月1日上映</p>
+            <!-- <p class="dt2">11月1日上映</p> -->
             <p class="dt3"><span class="">{{item.collect_count}}人收藏</span></p>
           </h3>
-          <h3>
-            <a href="https://movie.douban.com/trailer/211279/#content" class="trailer_icon">预告片</a>
+          <h3 class="sale">
+            <!-- <a href="https://movie.douban.com/trailer/211279/#content" class="trailer_icon">预告片</a> -->
             <a href="" class="pre-sale">预售</a>
           </h3>
         </li>
@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$http.get('api/movie/coming_soon', {city: '深圳'}, {
+    this.$http.get('api/movie/coming_soon', {}, {
       emulateJSON: true
     }).then(function (response) {
       this.items = response.data.subjects
@@ -105,23 +105,24 @@ export default {
           border-bottom: #D8D8D8 solid thin;
           height: 30px;
           overflow: hidden;
-          .dt2{
-            padding: 2px;
-            width: 95px;
-            height: 26px;
-            font-size: 14px;
-            color: #686868;
-            float:left;
-            text-align: center;
-            border-right: #D8D8D8 solid thin;
-          }
+          // .dt2{
+          //   padding: 2px;
+          //   width: 95px;
+          //   height: 26px;
+          //   font-size: 14px;
+          //   color: #686868;
+          //   float:left;
+          //   text-align: center;
+          //   border-right: #D8D8D8 solid thin;
+          // }
           .dt3{
             padding: 2px;
-            width: 96px;
+            // width: 96px;
+            width: 200px;
             height: 26px;
             font-size:14px;
             color: #686868;
-            float: right;
+            // float: left;
             text-align: center;
           }
         }
@@ -132,33 +133,40 @@ export default {
           border-bottom: #D8D8D8 solid thin;
           height: 30px;
           overflow: hidden;
-          .trailer_icon{
-            padding: 2px;
-            height:26px;
-            width: 95px;
-            font-size: 16px;
-            color: red;
-            float:left;
-            text-align: center;
-            border-right: #D8D8D8 solid thin;
-          }
+          // .trailer_icon{
+          //   padding: 2px;
+          //   height:26px;
+          //   width: 95px;
+          //   font-size: 16px;
+          //   color: red;
+          //   float:left;
+          //   text-align: center;
+          //   border-right: #D8D8D8 solid thin;
+          // }
           .pre-sale{
-            padding: 2px;
-            height:26px;
-            width: 96px;
+            position: relative;
+            left: 80px;
+            padding: 6px;
+            height:30px;
+            // width: 96px;
+            width: 200px;
             font-size:16px;
             color: red;
-            float: right;
+            // float: left;
             text-align: center;
           }
-          .trailer_icon:hover{
-            background-color: red;
-            color:white;
-          }
+          // .trailer_icon:hover{
+          //   background-color: red;
+          //   color:white;
+          // }
           .pre-sale:hover{
-            background-color: red;
+            // background-color: red;
             color: white;
           }
+          }
+          .sale:hover{
+            background-color: red;
+            color: white;
         }
       }
     }

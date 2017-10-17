@@ -11,7 +11,7 @@
       </div>
       <div class="douban-search">
         <el-input placeholder="电影、影人、影院、电视剧" v-model="content">
-          <el-button slot="append" icon="search" @click="searchMovie"></el-button>
+          <el-button slot="append" icon="search" @click="searchMovie()"></el-button>
         </el-input>
       </div>
     </div>
@@ -19,9 +19,12 @@
 </template>
 
 <script>
+// import {Api} from './common/api'
+// let API = new Api()
 export default {
   data () {
     return {
+      items: [],
       content: '',
       title: '正在热映',
       barList: [{
@@ -41,10 +44,19 @@ export default {
       this.title = title
     },
     searchMovie () {
-      this.$store.commit('SEARCH_TEXT', {searchText: this.content})
-      this.$store.dispatch('getSearchList')
-      this.$store.commit('SEARCH_LOADING', {loading: true})
-      this.$router.push({path: '/search', query: {searchText: this.content}})
+      // let searchText = this.content
+      // this.$http.get('api/movie/search', {q: searchText}, {
+      //   emulateJSON: true
+      // }).then(function (response) {
+      //   this.items = response.data.subjects
+      // }, function (response) {
+      //   return (response)
+      // })
+      this.$router.push({path: '/searchlist', query: {searchText: this.content}})
+      // API.get('api/movie/search', {q: searchText}).then((response) => {
+      //   this.items = response.subjects
+      // })
+      location.reload()
     }
   }
 }

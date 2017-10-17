@@ -1,18 +1,18 @@
 <template>
   <div class="search-tag">
     <a class="search-img">
-      <img class="search-tag-img movieImg" :src="subject.images.medium">
+      <img class="search-tag-img movieImg" :src="item.images.medium">
     </a>
     <div class="search-brief">
-      <p class="title">{{subject.title}}</p>
+      <p class="title">{{item.title}}</p>
       <p class="disc">
-        {{subject.year}}年
-        <span v-for="director in subject.directors">/{{director.name}}</span>
-        <span v-for="cast in subject.casts">/{{cast.name}}</span>
+        {{item.year}}年
+        <span v-for="director in item.directors">/{{director.name}}</span>
+        <span v-for="cast in item.casts">/{{cast.name}}</span>
       </p>
       <p class="rate">
-        <el-rate v-model="subject.rating.average" disabled text-color="#ff9900"></el-rate>
-        <span class="rate-value">{{subject.rating.average *2}}</span>
+        <el-rate v-model="item.rating.average" disabled text-color="#ff9900"></el-rate>
+        <span class="rate-value">{{item.rating.average *2}}</span>
       </p>
     </div>
   </div>
@@ -21,7 +21,7 @@
 <script>
 export default {
   props: {
-    subject: {
+    item: {
       type: Object
     }
   },
@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less" rel="stylesheet/less" scoped>
 @import '../../style/color.less';
 @import "../../style/base";
   .search-tag{
