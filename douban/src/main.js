@@ -25,7 +25,6 @@ Vue.config.productionTip = false
 
 // 创建路由实例
 const router = new VueRouter({
-  mode: 'history',
   routes: [
     {
       path: '/',
