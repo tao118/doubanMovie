@@ -5,8 +5,9 @@
     <!-- 缩进 -->
       <div class="">
         <p class="ul first"></p>
-        <SearchTag v-for="(subject,index) in ranking250.subjects" :subject="subject" :key="index"></SearchTag>
+        <SearchTag v-for="(item,index) in items" :item="item" :key="index" v-if="index < maxNum"></SearchTag>
       </div>
+      <div class="load-more" @click ="maxNum = items.length" v-if="maxNum < items.length">加载更多</div>
     </div>
   </div>
 </template>
@@ -26,84 +27,40 @@ export default {
       page: 1,
       totalPage: 0,
       start: 1,
-      ranking250: {}
+      items: [],
+      maxNum: 10
     }
   },
   mounted () {
-    // this.$store.commit('PAGE_START', {start: 0})
-    // this.$store.dispatch('loadingtop250')
-    API.get('api/movie/top250', {start: 0, count: 10}).then(res => {
-      let subject = this.ranking250.subjects
-      if (subject !== undefined) {
-        res.subjects = subject.concat(res.subjects)
-      }
+    API.get('api/movie/top250', {start: 0, count: 50}).then(res => {
+      this.items = res.subjects
     })
-    window.onscroll = () => {
-      if (!this.isLoad) {
-        if (this.getScrollTop() + this.getClientHeight() + 400 > this.getScrollHeight()) {
-          let page = this.page + 1
-          if (this.page <= this.totalPage) {
-            this.isLoad = true
-            this.page = page
-            this.start = (this.page - 1) * 10
-            API.get('api/movie/top250', {start: this.start, count: 10}).then(res => {
-              let subject = this.ranking250.subjects
-              if (subject !== undefined) {
-                res.subjects = subject.concat(res.subjects)
-              }
-            })
-          }
-        }
-      }
-    }
   },
   components: {
     'SearchTag': (resolve) => {
       require(['./SearchTag.vue'], resolve)
     }
-  },
-  computed: {
-    ranking250 () {
-      this.isLoad = false
-      let ranklist = this.ranking250
-      this.totalPage = ranklist.total
-      return ranklist
-    },
-    loadingMoviesOnline () {
-      return true
-    },
-    // 获取滚动条当前位置
-    getScrollTop () {
-      let scrollTop = 0
-      if (document.documentElement && document.documentElement.scrollTop) {
-        scrollTop = document.documentElement.scrollTop
-      } else if (document.body) {
-        scrollTop = document.body.scrollTop
-      }
-      return scrollTop
-    },
-    // 获取当前可视范围的高度
-    getClientHeight () {
-      let clientHeight = 0
-      if (document.body.clientHeight && document.documentElement.clientHeight) {
-        clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight)
-      } else {
-        clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight)
-      }
-      return clientHeight
-    },
-    // 获取文档完整高度
-    getScrollHeight () {
-      return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
-    }
   }
 }
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style lang="less" rel="stylesheet/less" scoped>
 #wrapper {
-  width: 950px;
+  width: 900px;
   min-height: 500px;
   margin: 30px auto;
+  h2{
+    margin-left: 20px;
+  }
+  .load-more{
+    cursor: pointer;
+    width: 900px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: left;
+    background: #eee;
+    color: #27a;
+  }
 }
 </style>

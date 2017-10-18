@@ -14,15 +14,14 @@ export default {
   },
   data () {
     return {
+      movieComment: {},
+      id: ''
     }
   },
   mounted () {
-    this.$store.dispatch('getMovieList')
-  },
-  computed: {
-    movieCommet () {
-      return this.$store.getters.movieComment
-    }
+    this.$http.get(`api/movie/subject/${this.id}/comments`, {}).then(res => {
+      this.movieComment = res.data
+    })
   }
 }
 </script>
