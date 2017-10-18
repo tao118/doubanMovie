@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper">
+  <div id="wrapper" v-loading="loadingTop250">
     <h2>Top250排行榜</h2>
     <div class="indent">
     <!-- 缩进 -->
@@ -28,13 +28,17 @@ export default {
       totalPage: 0,
       start: 1,
       items: [],
-      maxNum: 10
+      maxNum: 5
     }
+  },
+  beforeMount () {
+    this.loadingTop250 = true
   },
   mounted () {
     API.get('api/movie/top250', {start: 0, count: 50}).then(res => {
       this.items = res.subjects
     })
+    this.loadingTop250 = false
   },
   components: {
     'SearchTag': (resolve) => {

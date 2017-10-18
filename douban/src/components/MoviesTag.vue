@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-container">
+  <div class="movie-container" v-loading="loadingMoviesOnline">
     <div class="movieTag" v-for="(article,index) in articles" :key="index" v-if="index < maxNum" >
       <ul>
         <li class="film-pic">
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-// import $ from 'jquery'
 export default {
   data () {
     return {
@@ -35,7 +34,10 @@ export default {
       maxNum: 5
     }
   },
-  mounted: function () {
+  beforeMount () {
+    this.loadingMoviesOnline = true
+  },
+  mounted () {
     this.$http.get('api/movie/in_theaters?city=深圳', {}, {
       emulateJSON: true
     }).then(function (response) {
@@ -43,6 +45,7 @@ export default {
     }, function (response) {
       console.log(response)
     })
+    this.loadingMoviesOnline = false
   },
   methods: {
     showDetail: function (movieId) {
@@ -61,7 +64,7 @@ export default {
     width: 1200px;
     ul{
       width: 202px;
-      height: 370px;
+      height: 400px;
       margin-right: 38px;
       padding: 0;
       float: left;

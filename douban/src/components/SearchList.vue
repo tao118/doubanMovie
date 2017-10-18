@@ -1,5 +1,5 @@
 <template>
-  <div class="search-list">
+  <div class="search-list" v-loading="loadingSearch">
     <SearchTag v-for="(item,index) in items" :item="item" :key="index"></SearchTag>
   </div>
 </template>
@@ -16,11 +16,15 @@ export default {
       items: []
     }
   },
+  beforeMount () {
+    this.loadingSearch = true
+  },
   mounted () {
     let searchText = this.$route.query.searchText
     API.get('api/movie/search', {q: searchText}).then((response) => {
       this.items = response.subjects
     })
+    this.loadingSearch = false
   },
   components: {
     'SearchTag': (resolve) => {

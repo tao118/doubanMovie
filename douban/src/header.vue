@@ -71,7 +71,7 @@ export default {
     .header-container{
       // background-color: orange;
       width: 1200px;
-      margin: auto;
+      margin: 0 auto;
       .douban-search{
         width: 350px;
         // background-color: yellow;

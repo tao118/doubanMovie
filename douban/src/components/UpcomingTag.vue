@@ -1,5 +1,5 @@
 <template>
-  <div class="two-list">
+  <div class="two-list" v-loading="loadingUpcoming">
     <div class="upcomingTag" v-for="(item,index) in items" :key="index" v-if="index < maxNum">
       <ul>
         <li class="film-pic">
@@ -37,7 +37,10 @@ export default {
       }
     }
   },
-  mounted: function () {
+  beforeMount () {
+    this.loadingUpcoming = true
+  },
+  mounted () {
     this.$http.get('api/movie/coming_soon', {}, {
       emulateJSON: true
     }).then(function (response) {
@@ -45,6 +48,7 @@ export default {
     }, function (response) {
       console.log(response)
     })
+    this.loadingUpcoming = false
   },
   methods: {
     showDetail (id) {
